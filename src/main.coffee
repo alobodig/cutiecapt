@@ -29,7 +29,6 @@ transformArguments = (options = {}) ->
     cmdValue =
       if value is true then 'on'
       else if value is false then 'off'
-      else if value is null then null
       else value.toString()
     
     delete options[key]
@@ -40,10 +39,7 @@ transformArguments = (options = {}) ->
 flattenArguments = (args) ->
   flattened = []
   for key, value of args
-    if value is null
-      flattened.push "#{key}"
-    else
-      flattened.push "#{key}=#{value}"
+    flattened.push "#{key}=#{value}"
   flattened
 
 spawnCutyCapt = (path, site, out, options = {}, cb) ->
